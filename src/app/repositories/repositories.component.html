@@ -1,0 +1,121 @@
+
+<div class="container" id="addQuestion">
+  <h1 class="text-lg-center" >Search Repositories</h1><br />
+  <form class="form-inline">
+    <div class="form-group row">
+      <label class="col-2 col-form-label">Keyword:</label>
+      <input class="form-control" type="text" style="width: 400px" #keywordInput>
+    </div>
+    <button class="btn btn-primary" (click)="newKeywordBtn(keywordInput.value)">Enter</button>
+  </form>
+</div>
+
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-lg-center">language</h2>
+        <div class="container btnContainer">
+          <div class="row">
+            <ul class="list-group" style="margin:10px">
+              <tr *ngFor="let lan1 of languageArray_1" [dragDirective]='lan1' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_lan($event)">
+                <button class="btn btn-sm">{{lan1}}</button>
+              </tr>
+            </ul>
+            <ul class="list-group" style="margin:10px">
+              <tr *ngFor="let lan2 of languageArray_2" [dragDirective]='lan2' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_lan($event)">
+                <button class="btn btn-sm">{{lan2}}</button>
+              </tr>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <div class="col">
+    <h2 class="text-lg-center">sorted</h2>
+        <div class="container btnContainer">
+          <ul class="list-group" style="margin:10px">
+              <tr *ngFor="let sort of sortedArray" [dragDirective]='sort' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_sort($event)">
+                <button class="btn btn-sm">{{sort}}</button>
+              </tr>
+          </ul>
+        </div>
+    </div>
+
+    <div class="col">
+        <h2 class="text-lg-center">orders</h2>
+        <div class="container btnContainer">
+          <ul class="list-group" style="margin:10px">
+            <tr *ngFor="let order of orderArray" [dragDirective]='order' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_order($event)">
+              <button class="btn btn-sm">{{order}}</button>
+            </tr>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="container">
+  <div  class="droppable dropArea" [dropHighlight]="'highlight'" dropDirective (dropEvent)="addDropItem($event)">
+    <div class="container" id="insideContainer" #InsideContainer>
+      <div class="row">
+        <ul class="list-group" style="margin:2px">
+          <tr *ngFor="let key of keywordArray" [dragDirective]='key' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button #keyBtn type="button" class="btn btn-lg btn-info" value="{{key}}">{{key}}</button>
+          </tr>
+        </ul>
+        <ul class="list-group" style="margin:2px">
+          <tr *ngFor="let d_lan of dragged_languageArray" [dragDirective]='d_lan' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button  type="button" class="btn btn-lg btn-success">{{d_lan}}</button>
+          </tr>
+        </ul>
+        <ul class="list-group" style="margin:2px">
+          <tr *ngFor="let d_sort of dragged_sortedArray" [dragDirective]='d_sort' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button type="button" class="btn btn-lg btn-warning">{{d_sort}}</button>
+          </tr>
+        </ul>
+        <ul class="list-group" style="margin:2px">
+          <tr *ngFor="let d_order of dragged_orderArray" [dragDirective]='d_order' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button type="button" class="btn btn-lg btn-danger">{{d_order}}</button>
+          </tr>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic example" id="btnGroup">
+    <button type="button" class="btn btn-outline-primary" (click)="go()">Go</button>
+    <button type="button" class="btn btn-outline-danger" (click)="InsideContainer.innerHTML = ''">Reset</button>
+  </div>
+</div>
+<hr />
+
+<!---result list from github-->
+
+<h3>User List</h3>
+<div class="container">
+  <div *ngFor="let user_api of user_from_api"> 
+    <div class="col-lg-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="m-t-30"> <img src="{{user_api.owner.avatar_url}}" class="img-circle" width="160">
+            <h3 class="card-title m-t-10">{{user_api.name}}</h3>
+              <h6 class="card-subtitle">{{user_api.full_name}}</h6>
+                <div class="row text-center justify-content-md-center">
+                  <div class="col-4"><i class="fa fa-user fa-lg"></i> <font class="font-medium">owner id:{{user_api.owner.login}}</font></div>
+                    <div class="col-4"><i class="fa fa-desktop fa-lg"></i> <font class="font-medium">owner url:{{user_api.owner.url}}</font></div>
+                  </div>
+          </div>
+        </div>
+        <div>
+            <hr> 
+        </div>
+        <div class="card-body"> 
+          <div class="btn-group" role="group" id="save_skip">
+            <button class="btn btn-outline-success" (click)="saveBtn()">save</button>
+            <button class="btn btn-outline-info" >skip</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

@@ -1,0 +1,193 @@
+.dropArea{
+            border: 1px groove black;
+            height:100px;
+                  
+        }
+.alertSettings{
+    margin: 2px;
+}
+#alertGroupSettings{
+    position: absolute;
+    top: 770px;
+}
+  .btnContainer{
+            border: 1px groove #9CDEE3;
+            height:280px;
+            width: 100%;
+            background: #BBF4F9;
+  }
+  .optionBtn{
+      margin: 2px;
+  }
+  div{
+      border-radius:10px;
+  }
+  .text-lg-center2{
+    border-radius:6px;
+    background-color: #A5DADE;
+    width: 100%;
+    color: #333333;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    float: none;
+  }
+  .text-lg-center{
+    text-align:center;
+    border-radius:6px;
+    background-color: #C5C9B8;
+    width: 100%;
+    color: #333333;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    float: none;
+  }
+  #addQuestion{
+    background-color: #C5C9B8;
+    width: 100%;
+    color: #333333;
+    height: 150px;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 10px 0;
+    align-items: center;
+    justify-content: space-around;
+    display: flex;
+    float: none;
+}
+#insideContainer{
+  margin:25px;
+}
+#btnGroup{
+    position: relative;
+    left: -30px;
+  margin-left:970px;
+  margin-top:5px;
+}
+#save_skip{
+    margin-left:75%;
+    margin-top:-5%;
+}
+
+/*------*/
+
+body{
+    background:#eee;
+    margin-top:20px;
+}
+
+.m-t-30 {
+    margin-top: 30px;
+    margin-left: 9%;
+    
+}
+.m-t-10 {
+    margin-top: 10px;
+    text-align: center;
+}
+.font-medium {
+    font-weight: 500;
+}
+.img-circle {
+    border-radius: 150%;
+    margin-left: 32%;
+}
+h4 {
+    line-height: 22px;
+    font-size: 18px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #455a64;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+}
+.card .card-subtitle {
+    font-weight: 300;
+    margin-bottom: 15px;
+    color: #99abb4;
+    text-align: center;
+}
+a.link {
+    color: #455a64;
+}
+.btn-secondary, .btn-secondary.disabled {
+    -webkit-box-shadow: 0 2px 2px 0 rgba(169, 169, 169, 0.14), 0 3px 1px -2px rgba(169, 169, 169, 0.2), 0 1px 5px 0 rgba(169, 169, 169, 0.12);
+    box-shadow: 0 2px 2px 0 rgba(169, 169, 169, 0.14), 0 3px 1px -2px rgba(169, 169, 169, 0.2), 0 1px 5px 0 rgba(169, 169, 169, 0.12);
+    -webkit-transition: 0.2s ease-in;
+    -o-transition: 0.2s ease-in;
+    transition: 0.2s ease-in;
+    background-color: #ffffff;
+    color: #67757c;
+    border-color: #b1b8bb;
+}
+.btn-circle {
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    padding: 10px;
+}
+.justify-content-start{
+    border: 1 solid;
+    border-radius:10px;
+    box-shadow: 10px 10px 5px #99abb4;
+    animation: content;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+@keyframes content{
+    0%{opacity: 0;width: 20%;height: 20%}
+    100%{opacity: 1;width: 100%;height: 100%}
+}
+input:hover{
+    width: 50px;
+    height: 50px;
+    box-shadow: 5px 5px 2px #1FE8F9
+}
+.btn{
+    box-shadow: 3px 3px 1px #636768
+}
+.bnt:active{
+    transform: scale(1.5) perspective(1px);
+    color:#7D8283;
+}
+#enterBtn{
+  position: relative;
+  top: -39px;
+  left: 410px;
+}
+.pluginBtn{
+    animation-name: pluginBtnAnimation;
+    animation-delay: 0s;
+    animation-duration: 2s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    transform:rotateX(360deg);
+}
+@keyframes pluginBtnAnimation{
+    from{opacity:0}
+    to{opacity: 1}
+}
+#filterContainer{
+    border: 1px solid black;
+    box-shadow: 5px 5px 2px #99abb4;
+    animation-delay: 0s;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+}
+@keyframes filterContainerAnimation{
+    from{right:-300px}
+    to{right:300px}
+}

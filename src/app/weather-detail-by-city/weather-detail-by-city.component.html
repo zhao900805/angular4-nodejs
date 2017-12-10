@@ -1,0 +1,344 @@
+<div *ngIf="weathers" @weatherByCityAnimationTitle>
+  <div class="jumbotron jumbotron-fluid">
+    <div class="container centerSettings">
+      <img id="mainImg" align="middle" src="{{weathers.current_observation.icon_url}}">
+      <h1>{{weathers.current_observation.display_location.full}}</h1>
+      <h1>{{weathers.current_observation.weather}}</h1>
+      <h1>{{weathers.current_observation.temp_f}}</h1>
+      <h1 class="display-3"></h1>
+      <ul class="list-group" @weatherByCityAnimationList>
+        <li class="list-group-item"><h4>latitude,longitude,zipcode : 
+                                                        {{weathers.current_observation.display_location.latitude}}, 
+                                                        {{weathers.current_observation.display_location.longitude}}, 
+                                                        {{weathers.current_observation.display_location.zip}}
+        </h4></li>
+        <li class="list-group-item"><h4>observation_location : {{weathers.current_observation.observation_location.city}}</h4></li>
+        <li class="list-group-item"><h4>observation_time : {{weathers.current_observation.observation_time}}</h4></li>
+        <li class="list-group-item"><h4>relative_humidity : {{weathers.current_observation.relative_humidity}}</h4></li>
+        <li class="list-group-item"><h4>temperature_string : {{weathers.current_observation.temperature_string}}</h4></li>
+        <li class="list-group-item"><h4>visibility : {{weathers.current_observation.visibility_km}}(km) - {{weathers.current_observation.visibility_mi}}(mi)</h4></li>
+      </ul>
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="generalForecast()">
+        General Forecast
+      </button>
+
+      <!--table-->
+      <div *ngIf="generalforecast" id="generalforecastId">
+        <table class="table">
+          <thead class="thead-dark">
+            <tr>
+              <th>image</th>
+              <th scope="col">date</th>
+              <th scope="col">conditions</th>
+              <th scope="col">avewind</th>
+              <th scope="col">maxwind</th>
+              <th scope="col">low</th>
+              <th scope="col">high</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let fore of generalforecast,let i = index">
+              <th scope="row"><img src="{{fore.icon_url}}"></th>
+              <td >{{fore.date.day}}th</td>
+              <td>{{fore.conditions}}</td>
+              <td>mph : {{fore.avewind.mph}} , kph : {{fore.avewind.kph}} , dir: {{fore.avewind.dir}} , degrees: {{fore.avewind.degrees}}</td>
+              <td>mph : {{fore.maxwind.mph}} , kph : {{fore.maxwind.kph}} , dir: {{fore.maxwind.dir}} , degrees: {{fore.maxwind.degrees}}</td>
+              <td>celsius: {{fore.low.celsius}} , fahrenheit: {{fore.low.fahrenheit}}</td>
+              <td>celsius: {{fore.high.celsius}} , fahrenheit: {{fore.high.fahrenheit}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    <!--end of table-->
+      <br />
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="hourlyForecast()">
+        Hourly Forecast
+      </button>
+
+      <!--table-->
+      <div *ngIf="hourlyforecast" id="hourlyforecastId" @weatherAnimation_2>
+        <div *ngFor="let hour of hourlyforecast,let i = index">
+
+          <div *ngIf="i/6==0" class="row">
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i].icon_url}}">
+                <h4>{{hourlyforecast[i].condition}}</h4>
+                {{i}}th-{{hourlyforecast[i].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+1].icon_url}}">
+                <h4>{{hourlyforecast[i+1].condition}}</h4>
+                {{i+1}}th-{{hourlyforecast[i+1].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+2].icon_url}}">
+                <h4>{{hourlyforecast[i+2].condition}}</h4>
+                {{i+2}}th-{{hourlyforecast[i+2].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+3].icon_url}}">
+                <h4>{{hourlyforecast[i+3].condition}}</h4>
+                {{i+3}}th-{{hourlyforecast[i+3].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+4].icon_url}}">
+                <h4>{{hourlyforecast[i+4].condition}}</h4>
+                {{i+4}}th-{{hourlyforecast[i+4].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+5].icon_url}}">
+                <h4>{{hourlyforecast[i+5].condition}}</h4>
+                {{i+5}}th-{{hourlyforecast[i+5].FCTTIME.civil}}
+              </div>
+            </div>
+          </div>
+            
+
+          <div *ngIf="i/6==1" class="row">
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i].icon_url}}">
+                <h4>{{hourlyforecast[i].condition}}</h4>
+                {{i}}th-{{hourlyforecast[i].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+1].icon_url}}">
+                <h4>{{hourlyforecast[i+1].condition}}</h4>
+                {{i+1}}th-{{hourlyforecast[i+1].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+2].icon_url}}">
+                <h4>{{hourlyforecast[i+2].condition}}</h4>
+                {{i+2}}th-{{hourlyforecast[i+2].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+3].icon_url}}">
+                <h4>{{hourlyforecast[i+3].condition}}</h4>
+                {{i+3}}th-{{hourlyforecast[i+3].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+4].icon_url}}">
+                <h4>{{hourlyforecast[i+4].condition}}</h4>
+                {{i+4}}th-{{hourlyforecast[i+4].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+5].icon_url}}">
+                <h4>{{hourlyforecast[i+5].condition}}</h4>
+                {{i+5}}th-{{hourlyforecast[i+5].FCTTIME.civil}}
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="i/6==2" class="row">
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i].icon_url}}">
+                <h4>{{hourlyforecast[i].condition}}</h4>
+                {{i}}th-{{hourlyforecast[i].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+1].icon_url}}">
+                <h4>{{hourlyforecast[i+1].condition}}</h4>
+                {{i+1}}th-{{hourlyforecast[i+1].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+2].icon_url}}">
+                <h4>{{hourlyforecast[i+2].condition}}</h4>
+                {{i+2}}th-{{hourlyforecast[i+2].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+3].icon_url}}">
+                <h4>{{hourlyforecast[i+3].condition}}</h4>
+                {{i+3}}th-{{hourlyforecast[i+3].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+4].icon_url}}">
+                <h4>{{hourlyforecast[i+4].condition}}</h4>
+                {{i+4}}th-{{hourlyforecast[i+4].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+5].icon_url}}">
+                <h4>{{hourlyforecast[i+5].condition}}</h4>
+                {{i+5}}th-{{hourlyforecast[i+5].FCTTIME.civil}}
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="i/6==3" class="row">
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i].icon_url}}">
+                <h4>{{hourlyforecast[i].condition}}</h4>
+                {{i}}th-{{hourlyforecast[i].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+1].icon_url}}">
+                <h4>{{hourlyforecast[i+1].condition}}</h4>
+                {{i+1}}th-{{hourlyforecast[i+1].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+2].icon_url}}">
+                <h4>{{hourlyforecast[i+2].condition}}</h4>
+                {{i+2}}th-{{hourlyforecast[i+2].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+3].icon_url}}">
+                <h4>{{hourlyforecast[i+3].condition}}</h4>
+                {{i+3}}th-{{hourlyforecast[i+3].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+4].icon_url}}">
+                <h4>{{hourlyforecast[i+4].condition}}</h4>
+                {{i+4}}th-{{hourlyforecast[i+4].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+5].icon_url}}">
+                <h4>{{hourlyforecast[i+5].condition}}</h4>
+                {{i+5}}th-{{hourlyforecast[i+5].FCTTIME.civil}}
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="i/6==4" class="row">
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i].icon_url}}">
+                <h4>{{hourlyforecast[i].condition}}</h4>
+                {{i}}th-{{hourlyforecast[i].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+1].icon_url}}">
+                <h4>{{hourlyforecast[i+1].condition}}</h4>
+                {{i+1}}th-{{hourlyforecast[i+1].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+2].icon_url}}">
+                <h4>{{hourlyforecast[i+2].condition}}</h4>
+                {{i+2}}th-{{hourlyforecast[i+2].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+3].icon_url}}">
+                <h4>{{hourlyforecast[i+3].condition}}</h4>
+                {{i+3}}th-{{hourlyforecast[i+3].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+4].icon_url}}">
+                <h4>{{hourlyforecast[i+4].condition}}</h4>
+                {{i+4}}th-{{hourlyforecast[i+4].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+5].icon_url}}">
+                <h4>{{hourlyforecast[i+5].condition}}</h4>
+                {{i+5}}th-{{hourlyforecast[i+5].FCTTIME.civil}}
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="i/6==5" class="row">
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i].icon_url}}">
+                <h4>{{hourlyforecast[i].condition}}</h4>
+                {{i}}th-{{hourlyforecast[i].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+1].icon_url}}">
+                <h4>{{hourlyforecast[i+1].condition}}</h4>
+                {{i+1}}th-{{hourlyforecast[i+1].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+2].icon_url}}">
+                <h4>{{hourlyforecast[i+2].condition}}</h4>
+                {{i+2}}th-{{hourlyforecast[i+2].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+3].icon_url}}">
+                <h4>{{hourlyforecast[i+3].condition}}</h4>
+                {{i+3}}th-{{hourlyforecast[i+3].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+4].icon_url}}">
+                <h4>{{hourlyforecast[i+4].condition}}</h4>
+                {{i+4}}th-{{hourlyforecast[i+4].FCTTIME.civil}}
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-body">
+                <img src="{{hourlyforecast[i+5].icon_url}}">
+                <h4>{{hourlyforecast[i+5].condition}}</h4>
+                {{i+5}}th-{{hourlyforecast[i+5].FCTTIME.civil}}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <!--end of table-->
+      <!--<button type="button" class="btn btn-primary btn-lg btn-block" (click)="tenDaysForecast()">
+        10days Forecast
+      </button>
+      <button type="button" class="btn btn-primary btn-lg btn-block" (click)="history()">
+        history
+      </button>-->
+    </div>
+  </div>
+</div>

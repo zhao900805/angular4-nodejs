@@ -1,0 +1,156 @@
+<style>
+  .dropArea{
+            border: 1px groove black;
+            height:100px;
+            width: 100px;
+            background: black;
+        }
+  .btnContainer{
+            border: 1px groove black;
+            height:200px;
+            width: 200px;
+            background: green;
+  }
+  </style>
+<!--<div class="container">
+  <div class="row">
+    <div class="col-9">
+      <div class="row">
+        <h2>category</h2>
+        <div class="container btnContainer">
+          <tr *ngFor="let cate of CATEGORIES" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button class="btn btn-sm">{{cate}}</button>
+          </tr>
+        </div>
+      </div>
+      <div class="row">
+        <h2>keyword</h2>
+        <div class="container btnContainer">
+          <tr *ngFor="let key of keywordArray" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button class="btn btn-sm">{{key}}</button>
+          </tr>
+        </div>
+      </div>
+      <input type="text" #keyword (keyup.enter)="createKeywordBtn(keyword.value);keyword.value=''">
+      <div class="row">
+        <h2>language</h2>
+        <div class="container btnContainer">
+          <tr *ngFor="let lan of languageArray" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button class="btn btn-sm">{{lan}}</button>
+          </tr>
+        </div>
+      </div>
+      <input type="text" #language (keyup.enter)="createLanguageBtn(language.value);language.value = ''">
+      <div class="row">
+        <h2>sorted</h2>
+        <div class="container btnContainer">
+          <tr *ngFor="let sort of sortedArray" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button class="btn btn-sm">{{sort}}</button>
+          </tr>
+        </div>
+      </div>
+      <div class="row">
+        <h2>orders</h2>
+        <div class="container btnContainer">
+          <tr *ngFor="let order of ordersArray" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button class="btn btn-sm">{{order}}</button>
+          </tr>
+        </div>
+      </div>
+    </div>
+    <div class="col-3">
+      <div class="row">
+        <h1>search queue</h1>
+        <div  class="container" >
+          <div  class="droppable dropArea" [dropHighlight]="'highlight'" dropDirective (dropEvent)="addDropItem_1($event)"  item-width="300" item-height="300">
+            <tr *ngFor="let btn of droppedBtns_1" [dragDirective]='btn' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+              <button class="btn btn-sm btn-success">{{btn}}</button>
+            </tr>
+            <tr *ngFor="let d_key of Dragged_keywordArray" [dragDirective]='key' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+              <button class="btn btn-sm btn-success">{{d_key}}</button>
+            </tr>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <h1>delete queue</h1>
+        <div  class="container" >
+          <div  class="droppable dropArea" [dropHighlight]="'highlight'" dropDirective (dropEvent)="removeDropItem($event)"  item-width="300" item-height="300">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="container">
+  <div class="row">
+
+    <div class=" col-sm-2">
+      <h1>category</h1>
+      <div class=" container btnContainer">
+        <tr *ngFor="let cate of CATEGORIES" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+          <button class="btn btn-sm">{{cate}}</button>
+        </tr>
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <h2>keyword</h2>
+      <div class="container btnContainer">
+        <tr *ngFor="let key of keywordArray" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+          <button class="btn btn-sm">{{key}}</button>
+        </tr>
+      </div>
+        keyword:<input type="text" #keyword (keyup.enter)="createKeywordBtn(keyword.value);keyword.value=''">
+    </div>
+
+    <div class="col-sm-2">
+      <h2>language</h2>
+      <div class="container btnContainer">
+        <tr *ngFor="let lan of languageArray" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+          <button class="btn btn-sm">{{lan}}</button>
+        </tr>
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <h2>sorted</h2>
+      <div class="container btnContainer">
+        <tr *ngFor="let sort of sortedArray" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+          <button class="btn btn-sm">{{sort}}</button>
+        </tr>
+      </div>
+    </div>
+
+    <div class="col-sm-2">
+      <h2>orders</h2>
+      <div class="container btnContainer">
+        <tr *ngFor="let order of ordersArray" [dragDirective]='cate' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+          <button class="btn btn-sm">{{order}}</button>
+        </tr>
+      </div>
+    </div>
+
+  </div>
+</div>-->
+
+
+<!--<div class="container">
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-lg btn-primary" (click)="goToUser()">User</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-lg btn-primary" (click)="goToRepository()">Repositories</button>
+    </div>
+    <div class="col">
+      <button class="btn btn-lg btn-primary" (click)="goToIssue()">Issues</button>
+    </div>
+  </div>
+</div>-->
+<div class="conatiner">
+  <router-outlet></router-outlet>
+</div>

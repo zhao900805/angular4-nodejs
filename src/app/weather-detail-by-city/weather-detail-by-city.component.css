@@ -1,0 +1,49 @@
+h4{
+    text-align:left;
+}
+h1{
+    text-align:center;
+    margin: 4px;
+}
+#mainImg{
+    position: relative;
+    left: 48%;
+}
+li{
+    margin: 2px;
+    border: 1px solid #99E3F1;
+    border-radius: 10px;
+    box-shadow: 2px 2px 2px #588D97;
+}
+#infoButn{
+    position: relative;
+    left:80%;
+}
+button{
+    margin-top : 4px;
+    margin-bottom: 4px;
+}
+img{
+    size: 80%;
+    position: relative;
+    left: -10px;
+}
+.col{
+    width: 100%;
+    margin: 3px;
+    border-radius: 3px;
+    box-shadow: 1px 1px 1px #FFFFFF
+}
+.card{
+    box-shadow: 2px 2px 2px #588D97
+}
+.row{
+    margin:3px;
+}
+.card-body{
+    text-align: center;
+}
+img{
+    position: relative;
+    left: 48%;
+}

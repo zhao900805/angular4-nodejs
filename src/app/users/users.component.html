@@ -1,0 +1,212 @@
+<div [@userAnimation]> <!--animation-->
+
+<div class="container" id="addQuestion">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-lg-center">Search Users</h1><br />
+    </div>
+    <div class="col">
+      <form class="form-inline">
+        <div class="form-group">
+          <label class="col-2 col-form-label" style="margin-right: 10px">Keyword:</label>
+          <input class="form-control" type="text" style="width: 320px" #keywordInput id="keyWordInput">
+        </div>
+        <button class="btn btn-primary " (click)="newKeywordBtn(keywordInput.value)" id="enterBtn">Enter</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2 class="text-lg-center2">language</h2><hr />
+        <div class="container btnContainer">
+          <div class="row">
+            <ul class="list-group" style="margin:10px">
+              <tr *ngFor="let lan1 of languageArray_1" [dragDirective]='lan1' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_lan($event)">
+                <button class="btn btn-lg optionBtn">{{lan1}}</button>
+              </tr>
+            </ul>
+            <ul class="list-group" style="margin:10px">
+              <tr *ngFor="let lan2 of languageArray_2" [dragDirective]='lan2' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_lan($event)">
+                <button class="btn btn-lg optionBtn">{{lan2}}</button>
+              </tr>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <div class="col">
+    <h2 class="text-lg-center2">sorted</h2><hr />
+        <div class="container btnContainer">
+          <ul class="list-group" style="margin:10px">
+              <tr *ngFor="let sort of sortedArray" [dragDirective]='sort' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_sort($event)">
+                <button class="btn btn-lg optionBtn">{{sort}}</button>
+              </tr>
+          </ul>
+        </div>
+    </div>
+
+    <div class="col">
+        <h2 class="text-lg-center2">orders</h2><hr />
+        <div class="container btnContainer">
+          <ul class="list-group" style="margin:10px">
+            <tr *ngFor="let order of orderArray" [dragDirective]='order' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_order($event)">
+              <button class="btn btn-lg optionBtn">{{order}}</button>
+            </tr>
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+<br />
+<div class="container">
+  <div  class="droppable dropArea" [dropHighlight]="'highlight'" dropDirective (dropEvent)="addDropItem($event)">
+    <div class="container" id="insideContainer" #InsideContainer>
+      <div class="row">
+        <ul class="list-group" style="margin:2px">
+          <tr *ngFor="let key of keywordArray" [dragDirective]='key' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button #keyBtn type="button" class="btn btn-lg btn-info pluginBtn" value="{{key}}">{{key}}</button>
+          </tr>
+        </ul>
+        <ul class="list-group" style="margin:2px">
+          <tr *ngFor="let d_lan of dragged_languageArray" [dragDirective]='d_lan' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button  type="button" class="btn btn-lg btn-success pluginBtn">{{d_lan}}</button>
+          </tr>
+        </ul>
+        <ul class="list-group" style="margin:2px">
+          <tr *ngFor="let d_sort of dragged_sortedArray" [dragDirective]='d_sort' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button type="button" class="btn btn-lg btn-warning pluginBtn">{{d_sort}}</button>
+          </tr>
+        </ul>
+        <ul class="list-group" style="margin:2px">
+          <tr *ngFor="let d_order of dragged_orderArray" [dragDirective]='d_order' [dragHightlight]="'highlight'" (releaseDrop)="releaseDrop_1($event)" (startDrag)="startDrag_1(item)">
+            <button type="button" class="btn btn-lg btn-danger pluginBtn">{{d_order}}</button>
+          </tr>
+        </ul>
+      </div>
+    </div>
+
+    <!--alert message-->
+    <div [@userAlertAnimation]="alert_animation_flag" id="alertGroupSettings">
+      <div class="alert alert-danger alertSettings" role="alert" *ngIf="zero_flag" style="width: 900px;">
+        search query can not be empty!
+      </div>
+      <div class="alert alert-danger alertSettings" role="alert" *ngIf="one_flag" style="width: 200px;">
+        poor
+      </div>
+      <div class="alert alert-warning alertSettings" role="alert" *ngIf="two_flag" style="width: 400px;">
+        mid
+      </div>
+      <div class="alert alert-info alertSettings" role="alert" *ngIf="three_flag" style="width: 600px;">
+        good
+      </div>
+      <div class="alert alert-success alertSettings" role="alert" *ngIf="four_flag" style="width: 800px;">
+        excellent
+      </div>
+    </div>
+    <!--end of alert message-->
+
+  </div>
+  <div class="btn-group" role="group" aria-label="Basic example" id="btnGroup">
+    <button type="button" class="btn btn-outline-primary btn-lg" (click)="go()">Go</button>
+    <button type="button" class="btn btn-outline-danger btn-lg" (click)="reset()">Reset</button>
+  </div>
+</div>
+
+<!---result list from github-->
+
+<hr /><br />
+<h3>User List</h3>
+<br />
+<div class="row">
+<div class="col-lg-8">
+
+<div class="container">
+  <div *ngFor="let user_api of user_from_api"> 
+    <div class="justify-content-start"><!--col-lg-8-->
+      <div class="card" #card>
+        <div class="card-body">
+          <div class="m-t-30"> <img src="{{user_api.avatar_url}}" class="img-circle" width="160">
+            <h3 class="card-title m-t-10" >{{user_api.login}}</h3>
+              <h6 class="card-subtitle" >{{user_api.url}}</h6>
+              <input type="hidden" name="country" value="{{user_api.id}}">
+                <div class="row text-center justify-content-md-center">
+                  <div class="col-4"><i class="fa fa-user fa-lg"></i> <font class="font-medium" >id:{{user_api.id}}</font></div>
+                    <div class="col-4"><i class="fa fa-desktop fa-lg"></i> <font class="font-medium">score:{{user_api.score|number : '1.2-3'}}</font></div>
+                  </div>
+          </div>
+        </div>
+        <div>
+            <hr> 
+        </div>
+        <div class="card-body"> 
+          <div class="btn-group" role="group" id="save_skip">
+            <button class="btn btn-outline-success btn-lg" (click)="saveBtn(user_api)">save</button>
+            <button class="btn btn-outline-info btn-lg" (click)="card.remove()">skip</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr />
+    <!--alert-->
+    <div *ngIf="user_api.id==alertMsg&&first" id="alertDiv">
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <button type="button" (click)="closeAlert()" class="close btn-lg" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          <strong>Successfully!  </strong>the user has been saved!
+          <a href="/home/users/{{user_api.id}}">   More</a>
+        </div>
+    </div>
+    <div *ngIf="user_api.id==alertMsg2&&second" id="alertDiv_2" >
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <button type="button" (click)="closeAlert()" class="close btn-lg" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+          <strong>Bad!  </strong>the user has been saved before!
+          <a href="/home/users/{{user_api.id}}">   More</a>
+        </div>
+    </div>
+    <!--end of alert-->
+  </div>
+  <hr />
+</div>
+
+</div>
+<!--search input-->
+<div class="col-lg-4" id="smallTable" style="display: none" [@searchInputAnimation]="input_animation_flag">
+  <div class="container" id="filterContainer">
+    <div class="input-group" style="margin-top: 8px;">
+      <span class="input-group-btn">
+        <button class="btn btn-secondary btn-lg" type="button">Reset</button>
+      </span>
+      <input type="text" class="form-control" [(ngModel)]="searchText" >
+    </div><hr />
+    <table class="table table-dark">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user_api of user_from_api | filter:searchText ,let i = index">
+          <th scope="row">{{i}}</th>
+          <td>{{user_api.login}}</td>
+          <td>{{user_api.id}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<!--end of search input-->
+</div>
+</div><!--end of animation-->
+
+<div>
+  <router-outlet></router-outlet><!--there goes the user by id component-->
+</div>
+

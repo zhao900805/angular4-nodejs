@@ -1,0 +1,11 @@
+.alertSettings{
+    width: 180px;
+    margin: 10px;
+}
+.tagContainer{
+    display:inline;
+}
+.usersContainer{
+    margin: 10px;
+    border-radius: 10px;
+}

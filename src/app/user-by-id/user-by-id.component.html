@@ -1,0 +1,161 @@
+<div class="container" *ngIf="currUser" [@userByIdAnimation]>
+
+  <table class="table table-striped" style="width: 100%;border: 1px">
+    <tbody>
+      <tr>
+        <th scope="row">id</th>
+        <td><a href="{{currUser.id}}">{{currUser.id}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">url</th>
+        <td><a href="{{currUser.url}}">{{currUser.url}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">login</th>
+        <td><a href="{{currUser.login}}">{{currUser.login}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">score</th>
+        <td><a href="{{currUser.scope}}">{{currUser.score}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">html_url</th>
+        <td><a href="{{currUser.html_url}}">{{currUser.html_url}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">followers_url</th>
+        <td><a href="{{currUser.followers_url}}">{{currUser.followers_url}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">following_url</th>
+        <td><a href="{{currUser.following_url}}">{{currUser.following_url}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">subscriptions_url</th>
+        <td><a href="{{currUser.subscriptions_url}}">{{currUser.subscriptions_url}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">organizations_url</th>
+        <td><a href="{{currUser.organizations_url}}">{{currUser.organizations_url}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">repos_url</th>
+        <td><a href="{{currUser.repos_url}}">{{currUser.repos_url}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">received_events_url</th>
+        <td><a href="{{currUser.received_events_url}}">{{currUser.received_events_url}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">blog</th>
+        <td><a href="{{currUser.blog}}">{{currUser.blog}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">location</th>
+        <td><button type="button" class="btn btn-warning" (click)="checkCurrentPositionWeather(currUser.location)">{{currUser.location}}</button></td>
+      </tr>
+      <tr>
+        <th scope="row">email</th>
+        <td><a href="{{currUser.email}}">{{currUser.email}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">public_repos</th>
+        <td><a href="{{currUser.public_repos}}">{{currUser.public_repos}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">public_gists</th>
+        <td><a href="{{currUser.public_gists}}">{{currUser.public_gists}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">followers</th>
+        <td><a href="{{currUser.followers}}">{{currUser.followers}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">following</th>
+        <td><a href="{{currUser.following}}">{{currUser.following}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">created_at</th>
+        <td><a href="{{currUser.created_at}}">{{currUser.created_at}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">updated_at</th>
+        <td><a href="{{currUser.updated_at}}">{{currUser.updated_at}}</a></td>
+      </tr>
+      <tr>
+        <th scope="row">Tags:</th>
+        <span *ngFor="let tag of currUser.tags" class="tagBtn">
+            <a class="badge badge-primary" href="/home/users/tag/{{tag}}">{{tag}}</a>  
+        </span>
+      </tr>
+      <hr/>
+      <!--alert start-->
+      <div *ngIf="saved_flag" id="aler1" style="width:100%">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <button type="button" (click)="closeAlert()" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Successfully!  </strong>the user has been updated!
+        </div>
+      </div>
+      <div *ngIf="failed_flag" id="aler2" style="width:100%">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" (click)="closeAlert()" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Successfully!  </strong>the user has been updated!
+        </div>
+      </div>
+      <div *ngIf="saved_flag_tag" id="aler3">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <button type="button" (click)="closeAlert()" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Successfully!  </strong>just added a new tag!
+        </div>
+      </div>
+      <div *ngIf="failed_flag_tag" id="aler4">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" (click)="closeAlert()" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>Bad!  </strong>failed to add a new tag!
+        </div>
+      </div>
+      <div *ngIf="duplicate_flag_tag" id="aler5">
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <button type="button" (click)="closeAlert()" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+          <strong>tag existed!  </strong>please type in a new one!
+        </div>
+      </div>
+      <!--alert end-->
+      <!--two inputs-->
+
+        <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="commentArea">Comments</label>
+              <textarea class="form-control" id="commentArea" rows="3" #commentArea>{{currUser.comment}}</textarea><br/>
+              <button class="btn btn-info" type="button" (click)="saveComment(currUser.id,commentArea.value)">Save</button>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="commentArea">new Tags</label>
+              <textarea class="form-control" id="commentArea" rows="3" #tagArea></textarea><br/>
+              <button class="btn btn-info" type="button" (click)="addNewTag(currUser.id,tagArea.value)">Save</button>
+            </div>
+          </div>
+        </div>
+
+      <!--end two inputs-->
+      <hr />
+      <button class="btn btn-link" type="button" (click)="removeUser()">Remove</button>
+    </tbody>
+  </table>
+</div>
+
+
+

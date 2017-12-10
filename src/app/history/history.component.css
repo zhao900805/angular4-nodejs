@@ -1,0 +1,41 @@
+/* Structure */
+.example-container {
+  display: flex;
+  flex-direction: column;
+  min-width: 300px;
+}
+
+.example-header {
+  min-height: 64px;
+  padding: 8px 24px 0;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+.EditBtn{
+  margin-top: 8%;
+}
+.btn-group{
+  margin-left:200%;
+}
+.tagBtn{
+  margin: 3px;
+  margin-top: 2px;
+}
+#containerSettings{
+  width: 100%;
+  border-radius: 15px;
+  border: 1px solid #96C5CE;
+  margin: 10px;
+}
+#inputSettings{
+  border: 1px solid #96C5CE;
+  border-radius: 10px;
+}

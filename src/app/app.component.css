@@ -1,0 +1,11 @@
+body {
+    font-family: Georgia;
+    font-weight:bold;
+}
+.navbarSettings{
+    margin: 10px;
+}
+#home{
+    position: relative;
+    left: 100px;
+}
